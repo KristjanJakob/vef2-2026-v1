@@ -88,7 +88,7 @@ function generateQuestionHtml(q){
   return html
 }
 
-function pageTemplate({title, contentHtml}) {
+function pageTemplate({title, contentHtml, showScore = false}) {
   return `<!doctype html>
   <html lang="is">
   <head>
@@ -104,10 +104,12 @@ function pageTemplate({title, contentHtml}) {
         <nav><a href="./index.html">Forsíða</a></nav>
       </header>
 
+      ${showScore ? `
       <div>
         Rétt: <span id="correct">0</span> |
         Rangt: <span id="wrong">0</span>
       </div>
+      ` : ''}
 
       ${contentHtml}
 
@@ -143,7 +145,11 @@ async function main() {
     const contentHtml = qs.slice(0, MAX_QUESTIONS_PER_CATEGORY)
     .map(generateQuestionHtml).join('\n');
   
-    const pageHtml = pageTemplate({title: categoryName, contentHtml});
+    const pageHtml = pageTemplate({
+      title: categoryName,
+      contentHtml,
+      showScore: true,
+    });
     const path = `./dist/${slug}.html`;
 
     await fs.writeFile(path, pageHtml, 'utf-8');
@@ -166,6 +172,7 @@ async function main() {
   const indexPageHtml = pageTemplate({
     title: 'Forsíða',
     contentHtml: indexHtml,
+    showScore: false,
   })
 
   await fs.writeFile('./dist/index.html', indexPageHtml, 'utf-8');
