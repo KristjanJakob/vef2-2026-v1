@@ -141,7 +141,7 @@ async function main() {
   const linkarHtml = categories
     .map((categoryName) => {
       const slug = slugify(categoryName);
-      return `<li><a href="./${slug}.html">&{categoryName}</a></li>`;
+      return `<li><a href="./${slug}.html">${categoryName}</a></li>`;
     }).join('\n');
 
   const indexHtml = `
@@ -156,7 +156,7 @@ async function main() {
     contentHtml: indexHtml,
   })
 
-  await fs.writeFile('./dist/index.html', indexHtml, 'utf-8');
+  await fs.writeFile('./dist/index.html', indexPageHtml, 'utf-8');
 }
 
 main().catch((error) => {
