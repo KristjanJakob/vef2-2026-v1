@@ -132,6 +132,21 @@ button {
   font: inherit;
 }
 
+button.rett {
+    background-color: #2e7d32;
+    transition: transform 0.12s ease, background 0.12s ease;
+}
+
+button.rangt {
+    background-color: #c62828;
+    transition: transform 0.12s ease, background 0.12s ease;
+}
+
+button.rett,
+button.rangt {
+    transform: scale(1.05);
+}
+
 button:hover {
   background: #f0f2f5;
 }
