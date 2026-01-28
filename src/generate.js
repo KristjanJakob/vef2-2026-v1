@@ -136,6 +136,27 @@ async function main() {
 
     await fs.writeFile(path, pageHtml, 'utf-8');
   }
+  const categories = Array.from(categoryMap.keys());
+
+  const linkarHtml = categories
+    .map((categoryName) => {
+      const slug = slugify(categoryName);
+      return `<li><a href="./${slug}.html">&{categoryName}</a></li>`;
+    }).join('\n');
+
+  const indexHtml = `
+    <p>Veldu flokk til að sjá spurningar.</p>
+    <ul>
+      ${linkarHtml}
+    </ul>  
+  `;
+
+  const indexPageHtml = pageTemplate({
+    title: 'Forsíða',
+    contentHtml: indexHtml,
+  })
+
+  await fs.writeFile('./dist/index.html', indexHtml, 'utf-8');
 }
 
 main().catch((error) => {
