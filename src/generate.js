@@ -139,6 +139,8 @@ function applyFilters(q){
 
 
 async function main() {
+  await fs.mkdir('./dist', { recursive: true });
+
   const content = await fs.readFile('./questions.csv','utf-8');
 
   const lines = content.split('\n');
@@ -190,4 +192,6 @@ async function main() {
 
 main().catch((error) => {
   console.error('error generating', error);
+  process.exit(1);
 });
+
