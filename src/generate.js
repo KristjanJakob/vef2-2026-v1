@@ -78,6 +78,10 @@ function generateQuestionHtml(q){
     <details>
       <summary>Sýna svar</summary>
       <p>${q.answer}</p>
+      <div class="actions">
+        <button class="rett">Rétt</button>
+        <button class="rangt">Rangt</button>
+      </div>
     </details>
   </section>
   `;
@@ -99,6 +103,11 @@ function pageTemplate({title, contentHtml}) {
         <h1>${title}</h1>
         <nav><a href="./index.html">Forsíða</a></nav>
       </header>
+
+      <div>
+        Rétt: <span id="correct">0</span> |
+        Rangt: <span id="wrong">0</span>
+      </div>
 
       ${contentHtml}
 
