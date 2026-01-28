@@ -134,17 +134,24 @@ button {
 
 button.rett {
     background-color: #2e7d32;
+    color: #fff;
     transition: transform 0.12s ease, background 0.12s ease;
 }
 
 button.rangt {
     background-color: #c62828;
+    color: #fff;
     transition: transform 0.12s ease, background 0.12s ease;
 }
 
-button.rett,
-button.rangt {
+button.rett:hover {
     transform: scale(1.05);
+    background: #006208;
+}
+
+button.rangt:hover {
+    transform: scale(1.05);
+    background: #7c0c00;
 }
 
 button:hover {
