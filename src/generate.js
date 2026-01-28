@@ -14,8 +14,8 @@ function parseLine(line){
     const subCategory = split[1];
     const difficulty = split[2];
     const quality = split[3];
-    const question = split[4];
-    const answer = split[5];
+    const question = cleanText(split[4]);
+    const answer = cleanText(split[5]);
 
     const q = {
       categoryNumber,
@@ -26,6 +26,16 @@ function parseLine(line){
       answer 
     }
     return q
+}
+
+/* Taka út óþarfa gæsalappir */
+function cleanText(text) {
+  if(!text) return text;
+
+  return text
+    .replace(/^"(.*)"$/, '$1')
+    .replace(/""/g, '"')
+    .trim();
 }
 
 /** Groupa spurningar eftir flokkum **/
