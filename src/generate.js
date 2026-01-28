@@ -75,7 +75,10 @@ function generateQuestionHtml(q){
   const html = `
   <section>
     <h3>${q.question}</h3>
-    <p>${q.answer}</p>
+    <details>
+      <summary>Sýna svar</summary>
+      <p>${q.answer}</p>
+    </details>
   </section>
   `;
   return html
